@@ -1,0 +1,12 @@
+[
+  {
+    "from": "/assets/*",
+    "status": 200,
+    "to": "/assets/:splat"
+  },
+  {
+    "from": "/*",
+    "status": 200,
+    "to": "/index.html"
+  }
+]
