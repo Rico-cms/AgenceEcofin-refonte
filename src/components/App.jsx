@@ -62,6 +62,15 @@ export default function App() {
     excerpt: language === 'FR'
       ? "L'institution a déclaré que les perspectives pour les prix des matières premières restent soumises à des risques importants, y compris une durée d'hostilités plus longue que prévue..."
       : "The institution said commodity price outlooks remain subject to major risks, including a longer-than-expected duration of hostilities...",
+    body: language === 'FR' ? [
+      "La Banque Mondiale a mis en garde contre une reprise volatile des marchés des matières premières, alors que l'offre reste sous pression et que la demande mondiale continue de se transformer.",
+      "Les analystes estiment que les secteurs de l'énergie et de l'agriculture seront particulièrement exposés, avec un effet en chaîne sur les économies africaines dépendantes des exportations de ressources naturelles.",
+      "Face à ces incertitudes, les décideurs africains appellent à renforcer la résilience des chaînes de valeur et à accélérer les investissements dans les infrastructures durables."
+    ] : [
+      "The World Bank has warned of a volatile recovery in commodity markets as supply remains strained and global demand continues to shift.",
+      "Analysts say energy and agricultural sectors are particularly exposed, with ripple effects for African economies that depend on natural resource exports.",
+      "In response, African policymakers are calling for stronger supply chain resilience and accelerated investment in sustainable infrastructure."
+    ],
     image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=80&w=1200",
     author: "Rédaction",
     time: language === 'FR' ? "Il y a 2 heures" : "2 hours ago"
@@ -71,16 +80,43 @@ export default function App() {
     {
       category: "DÉVELOPPEMENT",
       title: "BAD en 2026 : Au-delà du débat Résilience vs Transformation",
+      body: language === 'FR' ? [
+        "La Banque africaine de développement s'apprête à redéfinir son approche en 2026, en mettant en avant les projets qui équilibrent résilience et transformation économique.",
+        "Le débat porte sur le financement des infrastructures durables, le soutien aux PME et la transition vers des modèles d'investissement plus inclusifs.",
+        "Les décideurs interrogés estiment qu'une stratégie hybride sera nécessaire pour répondre aux urgences tout en préparant le continent aux changements structurels." 
+      ] : [
+        "The African Development Bank is set to redefine its strategy in 2026, highlighting projects that balance resilience and economic transformation.",
+        "The discussion focuses on financing sustainable infrastructure, supporting SMEs, and transitioning to more inclusive investment models.",
+        "Officials believe a hybrid approach will be needed to address urgent needs while preparing the continent for structural change."
+      ],
       image: "https://images.unsplash.com/photo-1576085898323-218337e3e43c?auto=format&fit=crop&q=80&w=600"
     },
     {
       category: "ÉCOLOGIE",
       title: "Forêts d'Afrique : Quels pays détiennent les plus grandes parts ?",
+      body: language === 'FR' ? [
+        "Une étude récente montre que quelques pays africains concentrent la majorité des surfaces forestières, soulevant des enjeux de conservation et de gouvernance.",
+        "Le secteur forestier est clé pour la biodiversité et le climat, mais il est aussi au cœur de débats sur l'utilisation durable des ressources.",
+        "Les experts appellent à des partenariats régionaux pour renforcer la protection et valoriser les filières locales." 
+      ] : [
+        "A recent study shows that a few African countries hold the majority of forest areas, raising conservation and governance issues.",
+        "The forestry sector is key for biodiversity and climate, but it also lies at the heart of debates on sustainable resource use.",
+        "Experts are calling for regional partnerships to strengthen protection and develop local value chains."
+      ],
       image: "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&q=80&w=600"
     },
     {
       category: "TRANSPORT",
       title: "Lobito, TAZARA, Nacala : Comment les corridors ferroviaires influencent l'économie",
+      body: language === 'FR' ? [
+        "Les grands corridors ferroviaires africains deviennent des artères économiques cruciales, stimulant le commerce et le développement régional.",
+        "Les projets de modernisation mettent l'accent sur la fluidité des échanges, la réduction des coûts logistiques et l'intégration des marchés.",
+        "À terme, ces axes pourraient transformer les dynamiques de croissance dans plusieurs pays du continent." 
+      ] : [
+        "Africa's major rail corridors are becoming vital economic arteries, boosting trade and regional development.",
+        "Modernization projects focus on smoother logistics, lower transport costs, and better market integration.",
+        "In time, these corridors could reshape growth dynamics across multiple countries."
+      ],
       image: "https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&q=80&w=600"
     }
   ];
@@ -409,39 +445,83 @@ export default function App() {
         </div>
 
         {activeArticle && (
-          <div className="mt-10 bg-white rounded-3xl shadow-lg border border-gray-200 overflow-hidden">
-            <div className="relative h-64 md:h-80 overflow-hidden">
-              <img
-                src={activeArticle.image}
-                alt={activeArticle.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
-              <div className="absolute bottom-0 p-8 text-white">
-                <span className="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded uppercase tracking-wider mb-3 inline-block">
-                  {activeArticle.category}
-                </span>
-                <h3 className="text-2xl md:text-4xl font-serif font-bold leading-tight mb-3">
-                  {activeArticle.title}
-                </h3>
-                <div className="flex flex-wrap items-center gap-3 text-xs text-gray-200">
-                  <span>{activeArticle.author}</span>
-                  <span>•</span>
-                  <span>{activeArticle.time}</span>
+          <section className="mt-10 bg-white rounded-3xl shadow-2xl border border-gray-200 overflow-hidden">
+            <div className="grid gap-8 lg:grid-cols-[2fr_1fr]">
+              <div>
+                <div className="relative h-72 md:h-96 overflow-hidden">
+                  <img
+                    src={activeArticle.image}
+                    alt={activeArticle.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                    <span className="bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-[0.2em] mb-3 inline-block">
+                      {activeArticle.category}
+                    </span>
+                    <h3 className="text-3xl md:text-5xl font-serif font-black leading-tight mb-4">
+                      {activeArticle.title}
+                    </h3>
+                    <p className="text-sm text-gray-200 max-w-3xl">{activeArticle.excerpt}</p>
+                    <div className="mt-6 flex flex-wrap gap-3 text-xs text-gray-200 uppercase tracking-[0.15em]">
+                      <span>{activeArticle.author}</span>
+                      <span>•</span>
+                      <span>{activeArticle.time}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-8 border-t border-gray-100 text-gray-700 space-y-6">
+                  {(activeArticle.body || [activeArticle.excerpt]).map((paragraph, idx) => (
+                    <p key={idx} className="text-base leading-8">
+                      {paragraph}
+                    </p>
+                  ))}
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="rounded-3xl bg-red-50 p-6">
+                      <p className="text-xs uppercase tracking-[0.25em] text-red-600 font-bold mb-3">{language === 'FR' ? 'À retenir' : 'Key takeaways'}</p>
+                      <p className="text-sm text-gray-600">{language === 'FR' ? 'Un contexte de prix instables et un besoin urgent de stratégies de résilience.' : 'A backdrop of volatile prices and urgent need for resilience strategies.'}</p>
+                    </div>
+                    <div className="rounded-3xl bg-slate-950 p-6 text-white">
+                      <p className="text-xs uppercase tracking-[0.25em] text-red-400 font-bold mb-3">{language === 'FR' ? 'Perspectives' : 'Outlook'}</p>
+                      <p className="text-sm text-gray-200">{language === 'FR' ? 'La région doit renforcer ses chaînes de valeur pour mieux absorber les chocs globaux.' : 'The region must strengthen supply chains to better absorb global shocks.'}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
+
+              <aside className="bg-slate-950 p-8 text-white flex flex-col justify-between">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.25em] text-red-400 mb-6">
+                    {language === 'FR' ? 'Lecture en cours' : 'Now reading'}
+                  </p>
+                  <h4 className="text-xl font-semibold leading-tight mb-4">{activeArticle.title}</h4>
+                  <div className="space-y-4 text-sm text-gray-300">
+                    <div>
+                      <span className="block text-xs uppercase text-gray-500 mb-1">{language === 'FR' ? 'Auteur' : 'Author'}</span>
+                      <p>{activeArticle.author}</p>
+                    </div>
+                    <div>
+                      <span className="block text-xs uppercase text-gray-500 mb-1">{language === 'FR' ? 'Publié' : 'Published'}</span>
+                      <p>{activeArticle.time}</p>
+                    </div>
+                    <div>
+                      <span className="block text-xs uppercase text-gray-500 mb-1">{language === 'FR' ? 'Catégorie' : 'Category'}</span>
+                      <p>{activeArticle.category}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setActiveArticle(null)}
+                  className="mt-8 w-full rounded-3xl bg-red-600 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-white hover:bg-red-700 transition"
+                >
+                  {language === 'FR' ? 'Retour à l’accueil' : 'Back to home'}
+                </button>
+              </aside>
             </div>
-            <div className="p-8 text-gray-700">
-              <p className="text-base leading-relaxed mb-6">{activeArticle.excerpt}</p>
-              <button
-                type="button"
-                onClick={() => setActiveArticle(null)}
-                className="text-sm font-semibold text-red-600 hover:text-red-800 transition"
-              >
-                {language === 'FR' ? 'Retourner à la page' : 'Back to page'}
-              </button>
-            </div>
-          </div>
+          </section>
         )}
 
         {/* C. SECTION INSIGHTS (Cartes) */}
