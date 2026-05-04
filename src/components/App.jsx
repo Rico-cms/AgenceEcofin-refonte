@@ -197,9 +197,9 @@ export default function App() {
               EN
             </button>
             <span>|</span>
-            <button type="button" className="hover:text-white transition" onClick={() => setIsSearchOpen(true)}>
+            <a href="#newsletter" className="hover:text-white transition">
               {t.newsletter}
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -295,8 +295,13 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 py-6 bg-white border border-gray-200 rounded-xl shadow-sm mt-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
             <p className="text-sm text-gray-600">
-              {searchResults.query
-                ? `${t.noResults} “${searchResults.query}”` : language === 'FR' ? 'Fil complet affiché' : 'Full feed displayed'}
+              {searchResults.query ? (
+                searchResults.matchingArticles.length + searchResults.matchingNews.length > 0 ?
+                  `${searchResults.matchingArticles.length + searchResults.matchingNews.length} ${language === 'FR' ? 'résultat(s) pour' : 'result(s) for'} "${searchResults.query}"` :
+                  `${t.noResults} "${searchResults.query}"`
+              ) : (
+                language === 'FR' ? 'Fil complet affiché' : 'Full feed displayed'
+              )}
             </p>
             <button
               type="button"
@@ -571,7 +576,7 @@ export default function App() {
           <div className="absolute top-0 right-0 opacity-10 transform translate-x-1/4 -translate-y-1/4">
             <Mail size={300} />
           </div>
-          <div className="relative z-10 max-w-2xl mx-auto">
+          <div id="newsletter" className="relative z-10 max-w-2xl mx-auto">
             <h3 className="text-3xl font-black mb-4">{t.subscribeTitle}</h3>
             <p className="text-gray-400 mb-8">{t.subscribeDescription}</p>
             <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3 justify-center">
